@@ -1,15 +1,25 @@
 import express from "express";
-import mongoose from 'mongoose'
-import dotenv from 'dotenv'
-dotenv.config()
-mongoose.connect(process.env.MONGO).then(()=>{
-    console.log("MongoDB Connected"); 
-}).catch((err)=>{
-    console.log("error: ",err);
-    
-})
-    
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import userRouter from './routes/user.route.js'
+dotenv.config();
+
+
+
+mongoose
+  .connect(process.env.MONGO)
+  .then(() => {
+    console.log("MongoDB Connected");
+  })
+  .catch((err) => {
+    console.log("error: ", err);
+  });
 
 
 const app = express();
+
+app.use('/api/user',userRouter)
+
 app.listen(3000, () => console.log("server running"));
+
+
