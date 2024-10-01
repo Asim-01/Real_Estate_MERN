@@ -1,4 +1,3 @@
-import { logDOM } from "@testing-library/react";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -30,6 +29,8 @@ export default function SignUp() {
       console.log(res);
       
       const data = await res.json();
+      // console.log(data);
+      
       if (data.success === false) {
         setError(data.message);
         setLoading(false);
